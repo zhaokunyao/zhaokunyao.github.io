@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>响应式网页示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav {
+            background-color: #f4f4f4;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-items {
+        margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-group label {
+            width: 70px;
+        }
+        .form-group input {
+            padding: 5px;
+            width: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 150px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 428px) { /* iPhone 16 Pro 宽度 */
+            .container {
+                padding: 10px;
+            }
+            .form-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>响应式网页示例</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#services">服务</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+		<form id="itemForm" onclick='return false'>
+            <h2>输入商品信息</h2>
+            <div class="form-items">
+                <div class="form-group">
+                    <label>商品 1:</label>
+                    <input type="number" name="price1" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 2:</label>
+                    <input type="number" name="price2" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 3:</label>
+                    <input type="number" name="price3" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 4:</label>
+                    <input type="number" name="price4" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 5:</label>
+                    <input type="number" name="price5" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 6:</label>
+                    <input type="number" name="price6" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 7:</label>
+                    <input type="number" name="price7" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 8:</label>
+                    <input type="number" name="price8" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 9:</label>
+                    <input type="number" name="price9" placeholder="价格" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>商品 10:</label>
+                    <input type="number" name="price10" placeholder="价格" step="0.1">
+                </div>
+            </div>
+            <div class="form-items">
+                <div class="form-group">
+                    <label>目标价格:</label>
+                    <select name="targetPrice" required>
+                        <option value="">请选择目标价格</option>
+                        <option value="11.11">11.11</option>
+                        <option value="22.22">22.22</option>
+                        <option value="33.33">33.33</option>
+                        <option value="44.44">44.44</option>
+                        <option value="55.55">55.55</option>
+                        <option value="66.66">66.66</option>
+                        <option value="77.77">77.77</option>
+                        <option value="88.88">88.88</option>
+                        <option value="99.99">99.99</option>
+                    </select>
+                    <input type="number" name="subPrice_1" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_2" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_3" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_4" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_5" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_6" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_7" placeholder="需要扣除" required step="0.01" value="0">
+                </div>
+            </div>
+            <button type="button" onClick='go()'>检查组合</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 响应式网页示例。保留所有权利。</p>
+    </footer>
+</body>
+<script>
+    class Item {
+        constructor(price) {
+            this.price = price;
+        }
+    }
+
+    function go() {
+
+        // 创建 Item 列表
+        const itemList = [];
+
+        for (let i = 1; i <= 10; i++) {
+            const price = parseFloat(document.querySelector(`[name="price${i}"]`).value);
+            if (isNaN(price) || price < 0.1) {
+                continue;
+            }
+            itemList.push(new Item(price));
+        }
+
+        // 可以打印出来看看结果
+        console.log('商品列表:', itemList);
+		// alert(itemList);
+        
+
+        function findCombination(items, targetTotal) {
+            let result = [];
+            
+            function backtrack(index, remaining, current) {
+                // 考虑浮点数精度
+                if (Math.abs(remaining) < 0.0001) {
+                    result = [...current];
+                    return true;
+                }
+                if (remaining < 0 || index >= items.length) return false;
+
+                const item = items[index];
+                for (let i = 0; i <= 10; i++) {
+                    current.push({item, count: i});
+                    if (backtrack(index + 1, remaining - item.price * i, current)) {
+                        return true;
+                    }
+                    current.pop();
+                }
+                return false;
+            }
+
+            backtrack(0, targetTotal, []);
+            return result;
+        }
+
+        // 查找并显示具体组合
+        
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = 'checking ...';
+		alert(resultDiv.innerHTML);
+        const subPrice_1 = parseFloat(document.querySelector('[name="subPrice_1"]').value);
+        const subPrice_2 = parseFloat(document.querySelector('[name="subPrice_2"]').value);
+        const subPrice_3 = parseFloat(document.querySelector('[name="subPrice_3"]').value);
+        const subPrice_4 = parseFloat(document.querySelector('[name="subPrice_4"]').value);
+        const subPrice_5 = parseFloat(document.querySelector('[name="subPrice_5"]').value);
+        const subPrice_6 = parseFloat(document.querySelector('[name="subPrice_6"]').value);
+        const subPrice_7 = parseFloat(document.querySelector('[name="subPrice_7"]').value);
+        let targetPrice = parseFloat(document.querySelector('select[name="targetPrice"]').value);
+        targetPrice -= subPrice_1;
+        targetPrice -= subPrice_2;
+        targetPrice -= subPrice_3;
+        targetPrice -= subPrice_4;
+        targetPrice -= subPrice_5;
+        targetPrice -= subPrice_6;
+        targetPrice -= subPrice_7;
+		// alert(targetPrice)
+        const combination = findCombination(itemList, targetPrice);
+        if (combination.length > 0) {
+            let html = '<h3>可以通过以下组合达到目标价格:' + targetPrice + '</h3><ul>';
+            combination.forEach(({item, count}) => {
+                if (count > 0) {
+                    html += '<li>' + `${count}个 ${item.price} 的商品` + '</li>';
+                }
+            });
+            html += '</ul>';
+            resultDiv.innerHTML = html;
+			// alert(html);
+        } else {
+            resultDiv.innerHTML = "无法凑出目标价格";
+			alert("failed");
+        }
+    }
+
+</script>
+</html> 
