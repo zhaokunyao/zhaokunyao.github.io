@@ -155,54 +155,54 @@
 
     <div class="container">
 		<form id="itemForm" onclick='return false'>
-            <h2>输入商品信息</h2>
+            <h2>xiao liu</h2>
             <div class="form-items">
                 <div class="form-group">
-                    <label>商品 1:</label>
-                    <input type="number" name="price1" placeholder="价格" step="0.1">
+                    <label># 1:</label>
+                    <input type="number" name="price1" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 2:</label>
-                    <input type="number" name="price2" placeholder="价格" step="0.1">
+                    <label># 2:</label>
+                    <input type="number" name="price2" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 3:</label>
-                    <input type="number" name="price3" placeholder="价格" step="0.1">
+                    <label># 3:</label>
+                    <input type="number" name="price3" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 4:</label>
-                    <input type="number" name="price4" placeholder="价格" step="0.1">
+                    <label># 4:</label>
+                    <input type="number" name="price4" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 5:</label>
-                    <input type="number" name="price5" placeholder="价格" step="0.1">
+                    <label># 5:</label>
+                    <input type="number" name="price5" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 6:</label>
-                    <input type="number" name="price6" placeholder="价格" step="0.1">
+                    <label># 6:</label>
+                    <input type="number" name="price6" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 7:</label>
-                    <input type="number" name="price7" placeholder="价格" step="0.1">
+                    <label># 7:</label>
+                    <input type="number" name="price7" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 8:</label>
-                    <input type="number" name="price8" placeholder="价格" step="0.1">
+                    <label># 8:</label>
+                    <input type="number" name="price8" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 9:</label>
-                    <input type="number" name="price9" placeholder="价格" step="0.1">
+                    <label># 9:</label>
+                    <input type="number" name="price9" placeholder="" step="0.1">
                 </div>
                 <div class="form-group">
-                    <label>商品 10:</label>
-                    <input type="number" name="price10" placeholder="价格" step="0.1">
+                    <label># 10:</label>
+                    <input type="number" name="price10" placeholder="" step="0.1">
                 </div>
             </div>
             <div class="form-items">
                 <div class="form-group">
-                    <label>目标价格:</label>
+                    <label>xiao liu:</label>
                     <select name="targetPrice" required>
-                        <option value="">请选择目标价格</option>
+                        <option value="">select</option>
                         <option value="11.11">11.11</option>
                         <option value="22.22">22.22</option>
                         <option value="33.33">33.33</option>
@@ -213,16 +213,16 @@
                         <option value="88.88">88.88</option>
                         <option value="99.99">99.99</option>
                     </select>
-                    <input type="number" name="subPrice_1" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_2" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_3" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_4" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_5" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_6" placeholder="需要扣除" required step="0.01" value="0">
-                    <input type="number" name="subPrice_7" placeholder="需要扣除" required step="0.01" value="0">
+                    <input type="number" name="subPrice_1" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_2" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_3" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_4" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_5" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_6" placeholder="" required step="0.01" value="0">
+                    <input type="number" name="subPrice_7" placeholder="" required step="0.01" value="0">
                 </div>
             </div>
-            <button type="button" onClick='go()'>检查组合</button>
+            <button type="button" onClick='go()'>check</button>
         </form>
         <div id="result"></div>
     </div>
@@ -306,17 +306,17 @@
 		// alert(targetPrice)
         const combination = findCombination(itemList, targetPrice);
         if (combination.length > 0) {
-            let html = '<h3>可以通过以下组合达到目标价格:' + targetPrice + '</h3><ul>';
+            let html = '<h3>yes: :' + targetPrice + '</h3><ul>';
             combination.forEach(({item, count}) => {
                 if (count > 0) {
-                    html += '<li>' + `${count}个 ${item.price} 的商品` + '</li>';
+                    html += '<li>' + `${count} x ${item.price} ` + '</li>';
                 }
             });
             html += '</ul>';
             resultDiv.innerHTML = html;
 			// alert(html);
         } else {
-            resultDiv.innerHTML = "无法凑出目标价格";
+            resultDiv.innerHTML = "failed.";
 			alert("failed");
         }
     }
