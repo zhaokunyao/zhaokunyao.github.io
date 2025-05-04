@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -83,6 +82,12 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             margin-bottom: 150px;
+        }
+        #result_step_1 {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .content {
@@ -201,6 +206,7 @@
             <div class="form-items">
                 <div class="form-group">
                     <label>xiao liu:</label>
+					<!--
                     <select name="targetPrice" required>
                         <option value="">select</option>
                         <option value="11.11">11.11</option>
@@ -213,6 +219,10 @@
                         <option value="88.88">88.88</option>
                         <option value="99.99">99.99</option>
                     </select>
+					-->
+                    <input type="number" name="targetPrice" placeholder="target price" required step="0.01" value="18.88">
+
+                    <label>xiao liu:</label>
                     <input type="number" name="subPrice_1" placeholder="" required step="0.01" value="0">
                     <input type="number" name="subPrice_2" placeholder="" required step="0.01" value="0">
                     <input type="number" name="subPrice_3" placeholder="" required step="0.01" value="0">
@@ -224,6 +234,7 @@
             </div>
             <button type="button" onClick='go()'>check</button>
         </form>
+        <div id="result_step_1"></div>
         <div id="result"></div>
     </div>
 
@@ -240,7 +251,6 @@
     }
 
     function go() {
-
         // 创建 Item 列表
         const itemList = [];
 
@@ -287,7 +297,7 @@
         
         const resultDiv = document.getElementById('result');
         resultDiv.innerHTML = 'checking ...';
-		alert(resultDiv.innerHTML);
+		// alert(resultDiv.innerHTML);
         const subPrice_1 = parseFloat(document.querySelector('[name="subPrice_1"]').value);
         const subPrice_2 = parseFloat(document.querySelector('[name="subPrice_2"]').value);
         const subPrice_3 = parseFloat(document.querySelector('[name="subPrice_3"]').value);
@@ -295,7 +305,22 @@
         const subPrice_5 = parseFloat(document.querySelector('[name="subPrice_5"]').value);
         const subPrice_6 = parseFloat(document.querySelector('[name="subPrice_6"]').value);
         const subPrice_7 = parseFloat(document.querySelector('[name="subPrice_7"]').value);
-        let targetPrice = parseFloat(document.querySelector('select[name="targetPrice"]').value);
+        // let targetPrice = parseFloat(document.querySelector('select[name="targetPrice"]').value);
+        let targetPrice = parseFloat(document.querySelector('[name="targetPrice"]').value);
+
+		// sub-sum and left
+		sub_price_sum = 0;
+		sub_price_sum += subPrice_1;
+		sub_price_sum += subPrice_2;
+		sub_price_sum += subPrice_3;
+		sub_price_sum += subPrice_4;
+		sub_price_sum += subPrice_5;
+		sub_price_sum += subPrice_6;
+		sub_price_sum += subPrice_7;
+		left_price = targetPrice - sub_price_sum;
+		document.getElementById('result_step_1').innerHTML = `${targetPrice} - ${sub_price_sum} = ${left_price}`;
+
+		// do the sub
         targetPrice -= subPrice_1;
         targetPrice -= subPrice_2;
         targetPrice -= subPrice_3;
@@ -304,6 +329,7 @@
         targetPrice -= subPrice_6;
         targetPrice -= subPrice_7;
 		// alert(targetPrice)
+
         const combination = findCombination(itemList, targetPrice);
         if (combination.length > 0) {
             let html = '<h3>yes: :' + targetPrice + '</h3><ul>';
@@ -317,7 +343,7 @@
 			// alert(html);
         } else {
             resultDiv.innerHTML = "failed.";
-			alert("failed");
+			// alert("failed");
         }
     }
 
