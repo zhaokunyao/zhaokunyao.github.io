@@ -246,7 +246,9 @@
 <script>
     class Item {
         constructor(price) {
+			this.name = '';
             this.price = price;
+			this.priority = Math.random();
         }
     }
 
@@ -254,13 +256,55 @@
         // 创建 Item 列表
         const itemList = [];
 
+		// goods inputs
         for (let i = 1; i <= 10; i++) {
             const price = parseFloat(document.querySelector(`[name="price${i}"]`).value);
             if (isNaN(price) || price < 0.1) {
                 continue;
             }
-            itemList.push(new Item(price));
+			item = new Item(price);
+            itemList.push(item);
         }
+
+		// predefined goods
+		arr_predefined_goods = [
+			['玻瓶可乐', 5.80],
+			['可乐', 2.20],
+			['可乐', 2.50],
+			['依能苏打水/水', 1.2],
+			['水', 1.0],
+			['水', 1.30],
+			['水', 1.50],
+			['monster', 6.0],
+			['宝矿', 5.50],
+			['露露/崂山精品beer', 4.50],
+			['天涯/喜力/百威beer', 6.90],
+			['朝日beer', 8.50],
+			['一番榨beer', 7.20],
+			['draft beer', 7.90],
+			['青岛beer', 5.00],
+			['青岛白beer', 6.50],
+			['u8 beer', 4.80],
+			['燕京 beer', 4.0],
+			['自营3.8 beer', 3.80],
+			['自营4.8 beer', 4.80],
+		]
+
+		for (let i = 0; i < arr_predefined_goods.length; i++) {
+			name = arr_predefined_goods[i][0]
+			price = arr_predefined_goods[i][1]
+			item = new Item(price)
+			item.name = name
+			itemList.push(item)
+		}
+
+		// sort item list by price(priority asc order, price asc order)
+		itemList.sort((a, b) => {
+			if (a.priority == b.priority) {
+				return a.price - b.price;
+			}
+			return a.priority - b.priority;
+		})
 
         // 可以打印出来看看结果
         console.log('商品列表:', itemList);
@@ -276,10 +320,20 @@
                     result = [...current];
                     return true;
                 }
-                if (remaining < 0 || index >= items.length) return false;
+				if (remaining < 0 || index >= items.length) {
+					return false;
+				}
 
                 const item = items[index];
-                for (let i = 0; i <= 10; i++) {
+				let max_count = 1
+				if (item.name.indexOf('beer') >= 0 || item.name == '') {
+					max_count = 3;
+				}
+				// console.log(item.name, max_count);
+                for (let i = 0; i <= max_count; i++) {
+					// console.log('current.push:')
+					// console.log('\t', item.name, 'count:', i, '###', max_count)
+
                     current.push({item, count: i});
                     if (backtrack(index + 1, remaining - item.price * i, current)) {
                         return true;
@@ -335,7 +389,7 @@
             let html = '<h3>yes: :' + targetPrice + '</h3><ul>';
             combination.forEach(({item, count}) => {
                 if (count > 0) {
-                    html += '<li>' + `${count} x ${item.price} ` + '</li>';
+					html += '<li>' + `${count} x ${item.price} ${item.name}` + '</li>';
                 }
             });
             html += '</ul>';
@@ -349,3 +403,4 @@
 
 </script>
 </html> 
+
